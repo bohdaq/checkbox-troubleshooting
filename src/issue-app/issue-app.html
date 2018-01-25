@@ -7,9 +7,6 @@
 <dom-module id="issue-app">
   <template>
     <style>
-      :host {
-        display: block;
-      }
     </style>
     <h2>The issue with checkbox identification</h2>
 
@@ -29,27 +26,18 @@
       static get is() { return 'issue-app'; }
       static get properties() {
         return {
-          prop1: {
-            type: String
-          },
           data: {
-            type: Array,
-            observer: '_dataObserver'
+            type: Array
           }
         };
       }
 
-      _dataObserver(items) {
-        console.log(items);
-      }
-
-      ready() {
-        super.ready();
-        this.set('prop1', 'I\'m a custom element!');
-      }
-
       _listTapped(ev, target) {
         console.log('_listTapped target:', ev.target, 'target.name: ', ev.target.name, 'composedPath: ', ev.composedPath());
+
+        //depending on selected target i need to make row selected or not.
+        //now i understand that i may achieve this by wrapping 'selection' checkbox in some div.selection e.g.
+        //but i was unable to make it work through name attribute on paper-checkbox, neither in ShadowDom or ShadyDom
       }
     }
 
