@@ -1,0 +1,53 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="list-row">
+  <template>
+    <style>
+      :host .container {
+        @apply --layout-horizontal;
+        padding-top: 1em;
+      }
+      [name='other-checkbox'] {
+        padding-left: 1em;
+      }
+      :host {
+        height: 4em;
+      }
+    </style>
+
+    <div class="container">
+      <paper-checkbox value="[[selected]]"></paper-checkbox>
+      <div class="some-random-class">#[[index]] - [[item.name]]</div>
+      <paper-checkbox name="other-checkbox" value="[[selected]]">Will attend?</paper-checkbox>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class ListRow extends Polymer.Element {
+      static get is() { return 'list-row'; }
+      static get properties() {
+        return {
+          selected: {
+            type: String
+          },
+          item: {
+            type: Object
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+      }
+
+    }
+
+    window.customElements.define(ListRow.is, ListRow);
+  </script>
+</dom-module>

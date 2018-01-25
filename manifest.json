@@ -1,0 +1,7 @@
+{
+  "name": "issue",
+  "short_name": "issue",
+  "description": "app to describe issue w/ paper-checkbox",
+  "start_url": "/",
+  "display": "standalone"
+}

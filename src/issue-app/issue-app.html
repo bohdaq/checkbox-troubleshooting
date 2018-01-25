@@ -1,0 +1,58 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="list-row.html">
+
+<dom-module id="issue-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>The issue with checkbox identification</h2>
+
+    <iron-ajax url="src/issue-app/data/contacts.json" last-response="{{data}}" auto></iron-ajax>
+    <iron-list items="[[data]]" as="item" on-tap="_listTapped">
+      <template>
+        <list-row item="[[item]]" selected="[[selected]]"></list-row>
+      </template>
+    </iron-list>
+  </template>
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class IssueApp extends Polymer.Element {
+      static get is() { return 'issue-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String
+          },
+          data: {
+            type: Array,
+            observer: '_dataObserver'
+          }
+        };
+      }
+
+      _dataObserver(items) {
+        console.log(items);
+      }
+
+      ready() {
+        super.ready();
+        this.set('prop1', 'I\'m a custom element!');
+      }
+
+      _listTapped(ev, target) {
+        console.log('_listTapped target:', ev.target, 'target.name: ', ev.target.name, 'composedPath: ', ev.composedPath());
+      }
+    }
+
+    window.customElements.define(IssueApp.is, IssueApp);
+  </script>
+</dom-module>
